@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>¨
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+        flex-direction: column; /* Centrer les logos verticalement */
+    }
+
+    /* Conteneur pour les logos */
+    .social-icons {
+        display: flex;
+        gap: 15px;  /* Espacement entre les logos */
+        justify-content: center; /* Centrer les logos horizontalement */
+        flex-wrap: wrap; /* Permet aux logos de se répartir sur plusieurs lignes si nécessaire */
+    }
+
+    /* Style des images (logos) */
+    .social-icons img {
+        width: 40px;  /* Taille réduite des logos */
+        height: 40px; /* Assurez-vous que les images sont carrées */
+        border-radius: 50%; /* Coins arrondis */
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        object-fit: cover; /* Évite de déformer les images */
+    }
+
+    /* Effet au survol (hover) */
+    .social-icons img:hover {
+        transform: scale(1.1); /* Agrandissement au survol */
+        opacity: 0.8; /* Légère transparence */
+    }
+
+    /* Supprimer les soulignements des liens */
+    .social-icons a {
+        text-decoration: none; /* Enlever le soulignement des liens */
+    }
+
+    /* Ajout d'un titre au-dessus des logos */
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px; /* Un peu d'espace sous le titre */
+        text-align: center; /* Centrer le titre */
+        color: #333; /* Couleur du titre */
+    }
+
+</style>
+</head>
+<body>
+    <link rel="stylesheet" href="style.css">
+    <h1>
+        Nos références
+    </h1>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/profile.php?id=61563687093343" target="_blank">
+            <img src="fb.png" alt="Facebook Logo">
+        </a>
+        <a href="https://www.instagram.com/avec_1_coeur?igsh=YzljYTk1ODg3Zg==" target="_blank">
+            <img src="insta.png" alt="Instagram Logo">
+        </a>
+        <a href="https://x.com/avec1coeur?t=1ovVC4_KD1gm-lIRuk53Wg&s=09" target="_blank">
+            <img src="x.png" alt="X (Twitter) Logo">
+        </a>
+        <a href="https://vm.tiktok.com/ZMhb5goeW/" target="_blank">
+            <img src="tiktok.png" alt="TikTok Logo">
+        </a>
+    </div>
+    
+</body>
+</html>

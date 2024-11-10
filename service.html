@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bouton PayPal -->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="votre-email@paypal.com">
+    <input type="hidden" name="item_name" value="Produit Exemple">
+    <input type="hidden" name="amount" value="10.00">
+    <input type="hidden" name="currency_code" value="EUR">
+    <input type="submit" value=" PayPal" class="paypal-button">
+</form>
+
+<!-- Formulaire de paiement Mobile Money -->
+<form action="https://votre-serveur.com/paiement-mobile-money" method="POST" class="payment-form">
+    <label for="montant">Montant :</label>
+    <input type="number" name="montant" id="montant" value="1000" required>
+
+    <label for="service">Dépot :</label>
+    <select name="service" id="service" required>
+        <option value="mtn">MTN Mobile Money</option>
+        <option value="orange">Orange Money</option>
+    </select>
+
+    <!-- Champ caché pour le numéro Mobile Money (pré-rempli avec le numéro fixe) -->
+    <input type="hidden" name="numero" value="064422252" />
+
+    <input type="submit" value="Mobile Money" class="mobile-money-button">
+</form>
+<!-- Optionnel : Affichage des messages de confirmation ou erreur -->
+<div id="paymentStatus"></div>
+
+<script>
+    // Ajouter un gestionnaire d'événement pour le formulaire
+    document.getElementById('paymentForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Empêcher la soumission du formulaire
+
+        // Récupérer les valeurs du formulaire
+        const montant = document.getElementById('montant').value;
+        const service = document.getElementById('service').value;
+        
+        // Vérifier que le montant est positif
+        if (montant <= 0) {
+            document.getElementById('paymentStatus').innerText = "Le montant doit être positif.";
+            return;
+        }
+
+        // Envoyer la demande de paiement via une requête Fetch
+        fetch('/paiement-mobile-money', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                montant: montant,
+                service: service
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Afficher un message de succès ou d'erreur
+            if (data.status === 'success') {
+                document.getElementById('paymentStatus').innerText = "Paiement effectué avec succès!";
+            } else {
+                document.getElementById('paymentStatus').innerText = "Erreur lors du paiement. Veuillez réessayer.";
+            }
+        })
+        .catch(error => {
+            document.getElementById('paymentStatus').innerText = "Erreur de serveur. Veuillez réessayer plus tard.";
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
